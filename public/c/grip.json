@@ -1,0 +1,21 @@
+{
+  "name": "grip",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "grip.tsx",
+      "content": "'use client';\n\nimport { AnimatePresence, motion, useAnimation } from 'motion/react';\nimport { useEffect, useState } from 'react';\n\nconst circles = [\n  { cx: 19, cy: 5 }, // Top right\n  { cx: 12, cy: 5 }, // Top middle\n  { cx: 19, cy: 12 }, // Middle right\n  { cx: 5, cy: 5 }, // Top left\n  { cx: 12, cy: 12 }, // Center\n  { cx: 19, cy: 19 }, // Bottom right\n  { cx: 5, cy: 12 }, // Middle left\n  { cx: 12, cy: 19 }, // Bottom middle\n  { cx: 5, cy: 19 }, // Bottom left\n];\n\nconst GripIcon = () => {\n  const [isHovered, setIsHovered] = useState(false);\n  const controls = useAnimation();\n\n  useEffect(() => {\n    const animateCircles = async () => {\n      if (isHovered) {\n        await controls.start((i) => ({\n          opacity: 0.3,\n          transition: {\n            delay: i * 0.1,\n            duration: 0.2,\n          },\n        }));\n        await controls.start((i) => ({\n          opacity: 1,\n          transition: {\n            delay: i * 0.1,\n            duration: 0.2,\n          },\n        }));\n      }\n    };\n\n    animateCircles();\n  }, [isHovered, controls]);\n\n  return (\n    <motion.div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => setIsHovered(true)}\n      onMouseLeave={() => setIsHovered(false)}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <AnimatePresence>\n          {circles.map((circle, index) => (\n            <motion.circle\n              key={`${circle.cx}-${circle.cy}`}\n              cx={circle.cx}\n              cy={circle.cy}\n              r=\"1\"\n              initial=\"initial\"\n              variants={{\n                initial: {\n                  opacity: 1,\n                },\n              }}\n              animate={controls}\n              exit=\"initial\"\n              custom={index}\n            />\n          ))}\n        </AnimatePresence>\n      </svg>\n    </motion.div>\n  );\n};\n\nexport { GripIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

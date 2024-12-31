@@ -1,0 +1,21 @@
+{
+  "name": "connect",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "connect.tsx",
+      "content": "'use client';\n\nimport type { Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst plugVariants: Variants = {\n  normal: {\n    x: 0,\n    y: 0,\n  },\n  animate: {\n    x: -3,\n    y: 3,\n  },\n};\n\nconst socketVariants: Variants = {\n  normal: {\n    x: 0,\n    y: 0,\n  },\n  animate: {\n    x: 3,\n    y: -3,\n  },\n};\n\nconst pathVariants = {\n  normal: (custom: { x: number; y: number }) => ({\n    d: `M${custom.x} ${custom.y} l2.5 -2.5`,\n  }),\n  animate: (custom: { x: number; y: number }) => ({\n    d: `M${custom.x + 2.93} ${custom.y - 2.93} l0.10 -0.10`,\n  }),\n};\n\nconst ConnectIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <motion.path\n          d=\"M19 5l3 -3\"\n          variants={{\n            normal: {\n              d: 'M19 5l3 -3',\n            },\n            animate: {\n              d: 'M17 7l5 -5',\n            },\n          }}\n          animate={controls}\n          transition={{ type: 'spring', stiffness: 500, damping: 30 }}\n        />\n        <motion.path\n          d=\"m2 22 3-3\"\n          variants={{\n            normal: {\n              d: 'm2 22 3-3',\n            },\n            animate: {\n              d: 'm2 22 6-6',\n            },\n          }}\n          animate={controls}\n          transition={{ type: 'spring', stiffness: 500, damping: 30 }}\n        />\n        <motion.path\n          d=\"M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z\"\n          variants={socketVariants}\n          animate={controls}\n          transition={{ type: 'spring', stiffness: 500, damping: 30 }}\n        />\n        <motion.path\n          variants={pathVariants}\n          custom={{ x: 7.5, y: 13.5 }}\n          initial=\"normal\"\n          animate={controls}\n          transition={{ type: 'spring', stiffness: 500, damping: 30 }}\n        />\n        <motion.path\n          variants={pathVariants}\n          custom={{ x: 10.5, y: 16.5 }}\n          initial=\"normal\"\n          animate={controls}\n          transition={{ type: 'spring', stiffness: 500, damping: 30 }}\n        />\n        <motion.path\n          d=\"m12 6 6 6 2.3-2.3a2.4 2.4 0 0 0 0-3.4l-2.6-2.6a2.4 2.4 0 0 0-3.4 0Z\"\n          variants={plugVariants}\n          animate={controls}\n          transition={{ type: 'spring', stiffness: 500, damping: 30 }}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { ConnectIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

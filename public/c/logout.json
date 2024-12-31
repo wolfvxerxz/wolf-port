@@ -1,0 +1,21 @@
+{
+  "name": "logout",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "logout.tsx",
+      "content": "'use client';\n\nimport type { Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst pathVariants: Variants = {\n  animate: {\n    x: 2,\n    translateX: [0, -3, 0],\n    transition: {\n      duration: 0.4,\n    },\n  },\n};\n\nconst LogoutIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <path d=\"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4\" />\n        <motion.polyline\n          points=\"16 17 21 12 16 7\"\n          variants={pathVariants}\n          animate={controls}\n        />\n        <motion.line\n          x1=\"21\"\n          x2=\"9\"\n          y1=\"12\"\n          y2=\"12\"\n          variants={pathVariants}\n          animate={controls}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { LogoutIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

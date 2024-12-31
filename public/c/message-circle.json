@@ -1,0 +1,21 @@
+{
+  "name": "message-circle",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "message-circle.tsx",
+      "content": "'use client';\n\nimport type { Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst iconVariants: Variants = {\n  normal: {\n    scale: 1,\n    rotate: 0,\n  },\n  animate: {\n    scale: 1.05,\n    rotate: [0, -7, 7, 0],\n    transition: {\n      rotate: {\n        duration: 0.5,\n        ease: 'easeInOut',\n      },\n      scale: {\n        type: 'spring',\n        stiffness: 400,\n        damping: 10,\n      },\n    },\n  },\n};\n\nconst MessageCircleIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center overflow-hidden\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <motion.svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        variants={iconVariants}\n        animate={controls}\n      >\n        <path d=\"M7.9 20A9 9 0 1 0 4 16.1L2 22Z\" />\n      </motion.svg>\n    </div>\n  );\n};\n\nexport { MessageCircleIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "audio-lines",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "audio-lines.tsx",
+      "content": "'use client';\n\nimport { motion, useAnimation } from 'motion/react';\n\nconst AudioLinesIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <path d=\"M2 10v3\" />\n        <motion.path\n          variants={{\n            normal: { d: 'M6 6v11' },\n            animate: {\n              d: ['M6 6v11', 'M6 10v3', 'M6 6v11'],\n              transition: {\n                duration: 1.5,\n                repeat: Infinity,\n              },\n            },\n          }}\n          d=\"M6 6v11\"\n          animate={controls}\n        />\n        <motion.path\n          variants={{\n            normal: { d: 'M10 3v18' },\n            animate: {\n              d: ['M10 3v18', 'M10 9v5', 'M10 3v18'],\n              transition: {\n                duration: 1,\n                repeat: Infinity,\n              },\n            },\n          }}\n          d=\"M10 3v18\"\n          animate={controls}\n        />\n        <motion.path\n          variants={{\n            normal: { d: 'M14 8v7' },\n            animate: {\n              d: ['M14 8v7', 'M14 6v11', 'M14 8v7'],\n              transition: {\n                duration: 0.8,\n                repeat: Infinity,\n              },\n            },\n          }}\n          d=\"M14 8v7\"\n          animate={controls}\n        />\n        <motion.path\n          variants={{\n            normal: { d: 'M18 5v13' },\n            animate: {\n              d: ['M18 5v13', 'M18 7v9', 'M18 5v13'],\n              transition: {\n                duration: 1.5,\n                repeat: Infinity,\n              },\n            },\n          }}\n          d=\"M18 5v13\"\n          animate={controls}\n        />\n        <path d=\"M22 10v3\" />\n      </svg>\n    </div>\n  );\n};\n\nexport { AudioLinesIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

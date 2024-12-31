@@ -1,0 +1,21 @@
+{
+  "name": "search",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "search.tsx",
+      "content": "'use client';\n\nimport { motion, useAnimation } from 'motion/react';\n\nconst SearchIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center overflow-hidden\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <motion.svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n        variants={{\n          normal: { x: 0, y: 0 },\n          animate: {\n            x: [0, 0, -3, 0],\n            y: [0, -4, 0, 0],\n          },\n        }}\n        transition={{\n          duration: 1,\n          bounce: 0.3,\n        }}\n        animate={controls}\n      >\n        <circle cx=\"11\" cy=\"11\" r=\"8\" />\n        <path d=\"m21 21-4.3-4.3\" />\n      </motion.svg>\n    </div>\n  );\n};\n\nexport { SearchIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

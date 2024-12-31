@@ -1,0 +1,21 @@
+{
+  "name": "cpu",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "cpu.tsx",
+      "content": "'use client';\n\nimport type { Transition, Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst transition: Transition = {\n  duration: 0.5,\n  ease: 'easeInOut',\n  repeat: 1,\n};\n\nconst yVariants: Variants = {\n  normal: {\n    scale: 1,\n    rotate: 0,\n    opacity: 1,\n  },\n  animate: {\n    scaleY: [1, 1.5, 1],\n    opacity: [1, 0.8, 1],\n  },\n};\nconst xVariants: Variants = {\n  normal: {\n    scale: 1,\n    rotate: 0,\n    opacity: 1,\n  },\n  animate: {\n    scaleX: [1, 1.5, 1],\n    opacity: [1, 0.8, 1],\n  },\n};\n\nconst CpuIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <rect width=\"16\" height=\"16\" x=\"4\" y=\"4\" rx=\"2\" />\n        <rect width=\"6\" height=\"6\" x=\"9\" rx=\"1\" y=\"9\" />\n        <motion.path\n          d=\"M15 2v2\"\n          variants={yVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M15 20v2\"\n          variants={yVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M2 15h2\"\n          variants={xVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M2 9h2\"\n          variants={xVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M20 15h2\"\n          variants={xVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M20 9h2\"\n          variants={xVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M9 2v2\"\n          variants={yVariants}\n          transition={transition}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M9 20v2\"\n          variants={yVariants}\n          transition={transition}\n          animate={controls}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { CpuIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

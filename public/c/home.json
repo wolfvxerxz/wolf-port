@@ -1,0 +1,21 @@
+{
+  "name": "home",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "home.tsx",
+      "content": "'use client';\n\nimport type { Transition, Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst defaultTransition: Transition = {\n  duration: 0.6,\n  opacity: { duration: 0.2 },\n};\n\nconst pathVariants: Variants = {\n  normal: {\n    pathLength: 1,\n    opacity: 1,\n  },\n  animate: {\n    opacity: [0, 1],\n    pathLength: [0, 1],\n  },\n};\n\nconst HomeIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" />\n        <motion.path\n          d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"\n          variants={pathVariants}\n          transition={defaultTransition}\n          animate={controls}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { HomeIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

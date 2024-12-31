@@ -1,0 +1,21 @@
+{
+  "name": "scan-text",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "scan-text.tsx",
+      "content": "'use client';\n\nimport type { Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\nimport { useCallback } from 'react';\n\nconst frameVariants: Variants = {\n  visible: { opacity: 1 },\n  hidden: { opacity: 1 },\n};\n\nconst lineVariants: Variants = {\n  visible: { pathLength: 1, opacity: 1 },\n  hidden: { pathLength: 0, opacity: 0 },\n};\n\nconst ScanTextIcon = () => {\n  const controls = useAnimation();\n\n  const handleHoverStart = useCallback(async () => {\n    await controls.start((i) => ({\n      pathLength: 0,\n      opacity: 0,\n      transition: { delay: i * 0.1, duration: 0.3 },\n    }));\n    await controls.start((i) => ({\n      pathLength: 1,\n      opacity: 1,\n      transition: { delay: i * 0.1, duration: 0.3 },\n    }));\n  }, [controls]);\n\n  const handleHoverEnd = useCallback(() => {\n    controls.start('visible');\n  }, [controls]);\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={handleHoverStart}\n      onMouseLeave={handleHoverEnd}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <motion.path variants={frameVariants} d=\"M3 7V5a2 2 0 0 1 2-2h2\" />\n        <motion.path variants={frameVariants} d=\"M17 3h2a2 2 0 0 1 2 2v2\" />\n        <motion.path variants={frameVariants} d=\"M21 17v2a2 2 0 0 1-2 2h-2\" />\n        <motion.path variants={frameVariants} d=\"M7 21H5a2 2 0 0 1-2-2v-2\" />\n        <motion.path\n          variants={lineVariants}\n          initial=\"visible\"\n          animate={controls}\n          custom={0}\n          d=\"M7 8h8\"\n        />\n        <motion.path\n          variants={lineVariants}\n          initial=\"visible\"\n          animate={controls}\n          custom={1}\n          d=\"M7 12h10\"\n        />\n        <motion.path\n          variants={lineVariants}\n          initial=\"visible\"\n          animate={controls}\n          custom={2}\n          d=\"M7 16h6\"\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { ScanTextIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

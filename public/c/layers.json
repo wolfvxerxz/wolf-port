@@ -1,0 +1,21 @@
+{
+  "name": "layers",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "layers.tsx",
+      "content": "'use client';\n\nimport type { Transition } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\nimport { useEffect } from 'react';\n\nconst defaultTransition: Transition = {\n  type: 'spring',\n  stiffness: 100,\n  damping: 14,\n  mass: 1,\n};\n\nconst LayersIcon = () => {\n  const controls = useAnimation();\n\n  const handleMouseEnter = async () => {\n    await controls.start('firstState');\n    await controls.start('secondState');\n  };\n\n  const handleMouseLeave = () => {\n    controls.start('normal');\n  };\n\n  useEffect(() => {\n    controls.start('normal');\n  }, [controls]);\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={handleMouseEnter}\n      onMouseLeave={handleMouseLeave}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <path d=\"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z\" />\n        <motion.path\n          d=\"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65\"\n          variants={{\n            normal: { y: 0 },\n            firstState: { y: -9 },\n            secondState: { y: 0 },\n          }}\n          animate={controls}\n          transition={defaultTransition}\n        />\n        <motion.path\n          d=\"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65\"\n          variants={{\n            normal: { y: 0 },\n            firstState: { y: -5 },\n            secondState: { y: 0 },\n          }}\n          animate={controls}\n          transition={defaultTransition}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { LayersIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

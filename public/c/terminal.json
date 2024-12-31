@@ -1,0 +1,21 @@
+{
+  "name": "terminal",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "terminal.tsx",
+      "content": "'use client';\n\nimport type { Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst lineVariants: Variants = {\n  normal: { opacity: 1 },\n  hover: {\n    opacity: [1, 0, 1],\n    transition: {\n      duration: 0.8,\n      repeat: Infinity,\n      ease: 'linear',\n    },\n  },\n};\n\nconst TerminalIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('hover')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <polyline points=\"4 17 10 11 4 5\" />\n        <motion.line\n          x1=\"12\"\n          x2=\"20\"\n          y1=\"19\"\n          y2=\"19\"\n          variants={lineVariants}\n          animate={controls}\n          initial=\"normal\"\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { TerminalIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

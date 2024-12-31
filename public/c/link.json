@@ -1,0 +1,21 @@
+{
+  "name": "link",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "link.tsx",
+      "content": "'use client';\n\nimport type { Variants } from 'motion/react';\nimport { motion, useAnimation } from 'motion/react';\n\nconst pathVariants: Variants = {\n  initial: { pathLength: 1, pathOffset: 0, rotate: 0 },\n  animate: {\n    pathLength: [1, 0.97, 1, 0.97, 1],\n    pathOffset: [0, 0.05, 0, 0.05, 0],\n    rotate: [0, -5, 0],\n    transition: {\n      rotate: {\n        duration: 0.5,\n      },\n      duration: 1,\n      times: [0, 0.2, 0.4, 0.6, 1],\n      ease: 'easeInOut',\n    },\n  },\n};\n\nconst LinkIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <motion.path\n          d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"\n          variants={pathVariants}\n          animate={controls}\n        />\n        <motion.path\n          d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"\n          variants={pathVariants}\n          animate={controls}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { LinkIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

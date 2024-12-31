@@ -1,0 +1,21 @@
+{
+  "name": "layout-panel-top",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "files": [
+    {
+      "path": "layout-panel-top.tsx",
+      "content": "'use client';\n\nimport { useAnimation, motion } from 'motion/react';\n\nconst LayoutPanelTopIcon = () => {\n  const controls = useAnimation();\n\n  return (\n    <div\n      className=\"cursor-pointer select-none p-2 hover:bg-accent rounded-md transition-colors duration-200 flex items-center justify-center\"\n      onMouseEnter={() => controls.start('animate')}\n      onMouseLeave={() => controls.start('normal')}\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"28\"\n        height=\"28\"\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"2\"\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      >\n        <motion.rect\n          width=\"18\"\n          height=\"7\"\n          x=\"3\"\n          y=\"3\"\n          rx=\"1\"\n          initial=\"normal\"\n          animate={controls}\n          variants={{\n            normal: { opacity: 1, translateY: 0 },\n            animate: {\n              opacity: [0, 1],\n              translateY: [-5, 0],\n              transition: {\n                opacity: { duration: 0.5, times: [0.2, 1] },\n                duration: 0.5,\n              },\n            },\n          }}\n        />\n        <motion.rect\n          width=\"7\"\n          height=\"7\"\n          x=\"3\"\n          y=\"14\"\n          rx=\"1\"\n          initial=\"normal\"\n          animate={controls}\n          variants={{\n            normal: { opacity: 1, translateX: 0 },\n            animate: {\n              opacity: [0, 1],\n              translateX: [-10, 0],\n              transition: {\n                opacity: { duration: 0.7, times: [0.5, 1] },\n                translateX: { delay: 0.3 },\n                duration: 0.5,\n              },\n            },\n          }}\n        />\n        <motion.rect\n          width=\"7\"\n          height=\"7\"\n          x=\"14\"\n          y=\"14\"\n          rx=\"1\"\n          initial=\"normal\"\n          animate={controls}\n          variants={{\n            normal: { opacity: 1, translateX: 0 },\n            animate: {\n              opacity: [0, 1],\n              translateX: [10, 0],\n              transition: {\n                opacity: { duration: 0.8, times: [0.5, 1] },\n                translateX: { delay: 0.4 },\n                duration: 0.5,\n              },\n            },\n          }}\n        />\n      </svg>\n    </div>\n  );\n};\n\nexport { LayoutPanelTopIcon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}
